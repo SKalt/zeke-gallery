@@ -4,43 +4,96 @@
     <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
     <title>Gallery of /zeke</title>
     <style>
-      * {
+      body {
         background-color: black;
         color: white;
+        font-family: Arial, Helvetica, sans-serif;
       }
-      #index {
-        position: absolute;
-        top: 1em;
-        left: 1em;
-        font-size: larger;
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: white;
+          color: black;
+        }
       }
       #gallery {
-        height: 100vh;
+        height: calc(100vh - 5em);
+        /* 2em for the nav's padding, 1 for the nav-line, and 2 for the
+          #gallery's padding */
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
       }
       #main, #alt {
-        max-width: 50%;
+        max-width: 100%;
       }
-      .nav-button--group {
+      #hamburger-toggle { display: none; }
+      label.hamburger-icon { display: none; }
+      nav {
+        position: absolute;
+        width: 100%;
+        z-index: 10000;
+      }
+      nav ul {
+        padding: 0; display: flex;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+      nav ul li {
+        display: inline;
+        list-style: none;
+      }
+      nav li a, .hamburger-icon {
         min-width: max-content;
-        padding: 1em;
+        padding: 1rem;
         font-size: larger;
+      }
+      .hamburger-icon {
+        margin-top: 1em;
+      }
+      @media (max-width: 500px) {
+        nav {
+          background-color: #ccc;
+          padding-top: 1em;
+          padding-bottom: 1em;
+        }
+        body { margin: 0; }
+        label.hamburger-icon {
+          display: inline;
+          font-size: xx-large;
+        }
+        .direction {display: none;}
+        nav ul li {
+          display: block;
+        }
+        ul.hamburger-menu {
+          display: none;
+        }
+        input#hamburger-toggle:checked ~ ul.hamburger-menu  {
+          display: block;
+        }
       }
     </style>
   </head>
   <body>
-    <a id="index" href="/zeke">Back to index</a>
+    <nav>
+      <input type="checkbox" id="hamburger-toggle">
+      <label class="hamburger-icon" for="hamburger-toggle">
+        <span>&#9776;</span>
+      </label>
+      <ul class="hamburger-menu">
+        <li><a id="first"><span class="direction">&lt;&lt;</span>first</a></li>
+        <li><a id="prev"><span class="direction">&lt;</span>prev</a></li>
+        <li><a id="index" href="/zeke/img/">Index</a></li>
+        <li><a id="next">next<span class="direction">&gt;</span></a></li>
+        <li><a id="last">last<span class="direction">&gt;&gt;</span></a></li>
+      </ul>
+    </nav>
     <div id="gallery">
-      <a id="first" class="nav-button--group">&lt;&lt;first</a>
-      <a id="prev" class="nav-button--group">&lt;prev</a>
-      <!-- back button + image -->
       <img id="main" />
       <video id="alt" controls autoplay></video>
-      <a id="next" class="nav-button--group">next&gt;</a>
-      <a id="last" class="nav-button--group">last&gt;&gt;</a>
     </div>
     <script src="./gallery.js"></script>
   </body>

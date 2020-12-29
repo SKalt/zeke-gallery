@@ -1,0 +1,12 @@
+{
+  "name": "zeke-gallery",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Steven Kalt <kalt.steven@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
+  }
+}

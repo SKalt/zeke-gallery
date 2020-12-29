@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+    <title>Gallery of /zeke</title>
+    <style>
+      * {
+        background-color: black;
+        color: white;
+      }
+      #index {
+        position: absolute;
+        top: 1em;
+        left: 1em;
+        font-size: larger;
+      }
+      #gallery {
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+      #main, #alt {
+        max-width: 50%;
+      }
+      .nav-button--group {
+        min-width: max-content;
+        padding: 1em;
+        font-size: larger;
+      }
+    </style>
+  </head>
+  <body>
+    <a id="index" href="/zeke">Back to index</a>
+    <div id="gallery">
+      <a id="first" class="nav-button--group">&lt;&lt;first</a>
+      <a id="prev" class="nav-button--group">&lt;prev</a>
+      <!-- back button + image -->
+      <img id="main" />
+      <video id="alt" controls autoplay></video>
+      <a id="next" class="nav-button--group">next &gt;</a>
+      <a id="last" class="nav-button--group">last&gt;&gt;</a>
+    </div>
+    <script src="./gallery.js"></script>
+  </body>
+</html>

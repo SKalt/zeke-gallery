@@ -31,7 +31,7 @@ deploy() {
 
 main() {
   set -euo pipefail
-  local live;
+  local live="false";
   while [ -n "${1:-}" ]; do
     case "$1" in
     --live)    live=true;  shift;;

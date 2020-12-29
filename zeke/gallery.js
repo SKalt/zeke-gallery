@@ -98,7 +98,7 @@ const isVideoUrl = (url) => videoExtensions.has(getExt(url));
  */
 async function getImageHrefs() {
   const here = `${location.protocol}//${location.host}/zeke`;
-  return fetch(`${here}/img/index.html`)
+  return fetch(`${here}/img/`)
     .then((response) => response.text())
     .then((text) => text.split("\n").slice(1).join("\n").trim()) // remove the DTD
     .then(stringToTemplate)

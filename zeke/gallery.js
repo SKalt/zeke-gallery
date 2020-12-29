@@ -97,8 +97,10 @@ const isVideoUrl = (url) => videoExtensions.has(getExt(url));
  * @returns {Promise<Array<string>>}
  */
 async function getImageHrefs() {
-  const here = `${location.protocol}//${location.host}/zeke`;
-  return fetch(`${here}/img/`)
+  const base = `${location.protocol}//${location.host}`;
+  const zeke = new URL("/zeke", base);
+  const img = new URL("/zeke/img/", base);
+  return fetch(img.toString())
     .then((response) => response.text())
     .then((text) => text.split("\n").slice(1).join("\n").trim()) // remove the DTD
     .then(stringToTemplate)
@@ -116,8 +118,9 @@ async function getImageHrefs() {
     )
     .then((links) => {
       const result = links
-        .map((a) => a.href.split("/").slice(4).join("/"))
-        .filter((href) => isImgUrl(href) || isVideoUrl(href));
+        .map((a) => baseName(a.href) || '')
+        .filter((file) => Boolean(file) && (isImgUrl(file) || isVideoUrl(file)))
+        .map((file) => `./img/${file}`)
       logger("debug")({ links, hrefs: result });
       return result;
     });
